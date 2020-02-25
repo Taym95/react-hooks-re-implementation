@@ -45,16 +45,16 @@ const Counter = () => {
   const [count2, setCount2] = MyReact.useState(0);
 
   MyReact.useEffect(() => {
-    console.log("performe useEffect for count dep");
+    console.log("useEffect for count dep");
   }, [count]);
 
   MyReact.useEffect(() => {
-    console.log("performe useEffect for count2 dep");
+    console.log("useEffect for count2 dep");
   }, [count2]);
 
 
   MyReact.useEffect(() => {
-    console.log("performe useEffect for every rerender");
+    console.log("useEffect for every rerender");
   });
 
   console.log("rerender");
