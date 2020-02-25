@@ -1,3 +1,3 @@
 # react-useState-hook-re-impl
 
-A small re-implementation of `useState` react hook.
+A small re-implementation of `useState` & `useEffect` react hook.

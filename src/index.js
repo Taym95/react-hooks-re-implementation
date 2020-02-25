@@ -23,6 +23,16 @@ const MyReact = {
     this.currentStateIndex += 1;
     return [currentState.value, currentState.setState];
   },
+  useEffect(cb, deps) {
+    const oldDeps = this.stateArr[this.currentStateIndex];
+    let hasChanges = true;
+    if (oldDeps) {
+      hasChanges = deps.some((dep, i) => !Object.is(dep, oldDeps[i]));
+    }
+    if (hasChanges) cb();
+    this.stateArr[this.currentStateIndex] = deps;
+    this.currentStateIndex += 1;
+  },
   render(component, rootElement) {
     this.component = component;
     this.rootElement = rootElement;
@@ -33,6 +43,19 @@ const MyReact = {
 const Counter = () => {
   const [count, setCount] = MyReact.useState(0);
   const [count2, setCount2] = MyReact.useState(0);
+
+  MyReact.useEffect(() => {
+    console.log("performe useEffect for count dep");
+  }, [count]);
+
+  MyReact.useEffect(() => {
+    console.log("performe useEffect for count2 dep");
+  }, [count2]);
+
+
+  MyReact.useEffect(() => {
+    console.log("performe useEffect for every rerender");
+  });
 
   console.log("rerender");
   return (
